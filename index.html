@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神谕者声望 - 艾泽拉斯神器图鉴与崇拜指南</title>
+    <meta name="description" content="神谕者声望全攻略：部落与联盟阵营崇拜路线详解、声望获取方法、每日任务指引及神器外观解锁条件。">
+    <meta name="keywords" content="神谕者声望,魔兽世界,部落声望,联盟声望,神器外观,每日任务">
+    <style>
+        :root {
+            --primary-color: #5b3a75;
+            --secondary-color: #a855f7;
+            --accent-color: #fbbf24;
+            --bg-color: #0f0c15;
+            --card-bg: #1e1b2e;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(15, 12, 21, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .faction-toggle {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .faction-btn {
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .faction-btn.tribe {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+        }
+
+        .faction-btn.alliance {
+            background-color: #ef4444;
+            color: white;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e1b2e 0%, #0f0c15 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+            animation: pulse 10s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+        }
+
+        /* Progress Section */
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .progress-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .rank-name {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar-container {
+            background: #0f0c15;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            width: 100%; /* Default */
+            transition: width 1s ease-out;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .next-rank {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px dashed var(--border-color);
+            padding-top: 10px;
+        }
+
+        /* Daily Tasks */
+        .task-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+        }
+
+        .task-item:hover {
+            border-color: var(--border-color);
+        }
+
+        .task-icon {
+            width: 50px;
+            height: 50px;
+            background: #2d2640;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .task-content {
+            flex-grow: 1;
+        }
+
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .task-location {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .task-reward {
+            display: flex;
+            gap: 15px;
+            text-align: right;
+        }
+
+        .reward-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+        }
+
+        /* Guide Section */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .guide-content h3 {
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .guide-steps {
+            list-style: none;
+            counter-reset: step;
+        }
+
+        .guide-steps li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 25px;
+        }
+
+        .guide-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 35px;
+            height: 35px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 700;
+        }
+
+        .guide-steps li strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .guide-steps li p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .sidebar-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .sidebar-box h4 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .sidebar-list {
+            list-style: none;
+        }
+
+        .sidebar-list li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .sidebar-list li::before {
+            content: '•';
+            color: var(--secondary-color);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0710;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 0.85rem;
+            }
+
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .task-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .task-reward {
+                text-align: left;
+                margin-top: 15px;
+                width: 100%;
+                justify-content: flex-start;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span>🔮</span> 神谕者声望
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">声望概览</a></li>
+                    <li><a href="#tasks">每日任务</a></li>
+                    <li><a href="#guide">崇拜路线</a></li>
+                    <li><a href="#rewards">奖励预览</a></li>
+                </ul>
+            </nav>
+            <div class="faction-toggle">
+                <div class="faction-btn tribe" onclick="switchFaction('tribe')">部落</div>
+                <div class="faction-btn alliance" onclick="switchFaction('alliance')">联盟</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="status-badge" id="faction-badge">部落阵营声望</div>
+                <h1>神谕者声望</h1>
+                <p>在潘达利亚的迷雾中，选择你的盟友。神谕者承诺给予你远古的力量，但你需要通过每日任务证明你的忠诚。</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Progress Section -->
+            <section id="progress">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>声望进度</h2>
+                        <p>追踪你的崇拜之路</p>
+                    </div>
+                </div>
+                
+                <div class="progress-grid">
+                    <article class="progress-card">
+                        <div class="card-header">
+                            <span class="card-title">尊敬</span>
+                            <span class="rank-name">奥拉基尔</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 75%;"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>当前: 7500 / 10000</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="next-rank">
+                            下一步: 崇拜 (还需 2500)
+                        </div>
+                    </article>
+
+                    <article class="progress-card">
+                        <div class="card-header">
+                            <span class="card-title">友善</span>
+                            <span class="rank-name">阿纳克</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 40%;"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>当前: 4000 / 10000</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="next-rank">
+                            下一步: 尊敬 (还需 6000)
+                        </div>
+                    </article>
+
+                    <article class="progress-card">
+                        <div class="card-header">
+                            <span class="card-title">中立</span>
+                            <span class="rank-name">初始</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 0%;"></div>
+                        </div>
+                        <div class="progress-info">
+                            <span>当前: 0 / 3000</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="next-rank">
+                            下一步: 友善 (还需 3000)
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Daily Tasks -->
+            <section id="tasks">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>每日任务</h2>
+                        <p>高效获取声望的关键</p>
+                    </div>
+                </div>
+
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="task-icon">🌿</div>
+                        <div class="task-content">
+                            <div class="task-title">净化迷雾</div>
+                            <div class="task-location">地图：锦绣谷 - 风云祭坛</div>
+                        </div>
+                        <div class="task-reward">
+                            <span class="reward-item">+250 声望</span>
+                            <span class="reward-item">2个普通宝箱</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-icon">🪨</div>
+                        <div class="task-content">
+                            <div class="task-title">挖掘遗迹</div>
+                            <div class="task-location">地图：昆莱山 - 遗忘者营地</div>
+                        </div>
+                        <div class="task-reward">
+                            <span class="reward-item">+250 声望</span>
+                            <span class="reward-item">翡翠碎片 x 5</span>
+                        </div>
+                    </div>
+
+                    <div class="task-item">
+                        <div class="task-icon">⚔️</div>
+                        <div class="task-content">
+                            <div class="task-title">对抗古神仆从</div>
+                            <div class="task-location">地图：翡翠林 - 幽影谷</div>
+                        </div>
+                        <div class="task-reward">
+                            <span class="reward-item">+250 声望</span>
+                            <span class="reward-item">金币 x 50</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Guide Section -->
+            <section id="guide">
+                <div class="section-header">
+                    <div class="section-title">
+                        <h2>崇拜路线指南</h2>
+                        <p>从零开始到最终奖励</p>
+                    </div>
+                </div>
+
+                <div class="guide-grid">
+                    <div class="guide-content">
+                        <h3>步骤详解</h3>
+                        <ol class="guide-steps">
+                            <li>
+                                <strong>开启声望线</strong>
+                                <p>完成“寻找远古盟友”任务线。在锦绣谷的风云祭坛接取任务，选择神谕者阵营（需完成前置剧情）。阵营选择后不可更改，请谨慎决定。</p>
+                            </li>
+                            <li>
+                                <strong>日常积累</strong>
+                                <p>每日完成锦绣谷、昆莱山和翡翠林的4个每日任务，这是声望增长的主要来源。建议优先选择有物品掉落的任务。</p>
+                            </li>
+                            <li>
+                                <strong>特殊物品兑换</strong>
+                                <p>在风云祭坛找到NPC“大德鲁伊万里叶”，使用“远古遗物”兑换声望。这是崇拜前的冲刺阶段。</p>
+                            </li>
+                            <li>
+                                <strong>最终崇拜</strong>
+                                <p>达到尊敬后，继续完成日常并使用兑换物。当声望达到崇拜时，解锁专属神器外观。</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <aside>
+                        <div class="sidebar-box">
+                            <h4>重要提示</h4>
+                            <ul class="sidebar-list">
+                                <li>阵营选择具有唯一性，不可重置。</li>
+                                <li>某些任务需要特定的飞行解锁。</li>
+                                <li>崇拜后可获得“远古之灵”坐骑。</li>
+                                <li>声望加成道具（如食物）可叠加使用。</li>
+                            </ul>
+                        </div>
+
+                        <div class="sidebar-box" style="margin-top: 20px;">
+                            <h4>奖励列表</h4>
+                            <ul class="sidebar-list">
+                                <li><strong>崇拜奖励：</strong> 远古之灵坐骑</li>
+                                <li><strong>尊敬奖励：</strong> 神器外观碎片</li>
+                                <li><strong>友善奖励：</strong> 声望崇拜药水</li>
+                                <li><strong>中立奖励：</strong> 普通宝箱</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>本站为游戏攻略社区，所有游戏内容版权归暴雪娱乐所有。</p>
+        <p>&copy; 2023 神谕者声望指南. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+</html>
