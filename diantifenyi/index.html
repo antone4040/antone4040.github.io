@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="本站专注于提供电梯场景下粉衣女子的影视作品及图片资源，包含作品分类、高清剧照预览及观看指南。我们致力于为影视爱好者提供安全、便捷的影视资源导航服务。">
+    <meta name="keywords" content="电梯粉衣女子番号,电梯电影,粉衣女子,影视资源,电梯场景">
+    <title>电梯粉衣女子番号-热门电梯场景影视作品与观看指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #e91e63;
+            --secondary-color: #f8bbd0;
+            --bg-color: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --border-radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            font-size: 16px;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #d81b60;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #ad1457;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .filter-bar label {
+            font-weight: bold;
+            color: var(--text-sub);
+        }
+
+        .filter-bar select, .filter-bar input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Grid Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            padding-top: 140%; /* Aspect ratio */
+            background-color: #eee;
+            overflow: hidden;
+        }
+
+        .card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(233, 30, 99, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-meta {
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #c2185b;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .info-section h2 {
+            margin-bottom: 20px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .info-text p {
+            margin-bottom: 15px;
+            color: var(--text-sub);
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-sub);
+        }
+
+        .info-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #aaa;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            
+            .nav-menu {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            影视导航站
+        </div>
+        <nav class="nav-menu">
+            <a href="#">首页</a>
+            <a href="#">分类浏览</a>
+            <a href="#">最新收录</a>
+            <a href="#">排行榜</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <h1>电梯粉衣女子番号</h1>
+            <p>为您精选收录包含电梯场景与粉衣元素的影视作品，提供高清剧照预览与观看指南，助您快速找到感兴趣的资源。</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Filter Section -->
+        <section class="filter-bar">
+            <div>
+                <label>搜索：</label>
+                <input type="text" placeholder="输入作品名称或番号..." style="width: 200px;">
+            </div>
+            <div>
+                <label>分类：</label>
+                <select>
+                    <option>全部类型</option>
+                    <option>剧情电影</option>
+                    <option>短片</option>
+                    <option>写真集</option>
+                </select>
+            </div>
+            <div>
+                <label>年代：</label>
+                <select>
+                    <option>不限</option>
+                    <option>2024</option>
+                    <option>2023</option>
+                    <option>2022及以前</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Content Grid -->
+        <section class="content-grid">
+            <!-- Card 1 -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <span class="card-tag">热门推荐</span>
+                    <img src="https://picsum.photos/seed/elevator1/400/560" alt="电梯场景剧照" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">都市电梯奇遇记</h3>
+                    <div class="card-meta">
+                        <span>2024-05-12</span>
+                        <span>HD</span>
+                    </div>
+                    <p class="card-desc">本片主要讲述了在密闭的电梯空间内发生的一系列意外插曲，场景设计紧凑，光影效果独特。</p>
+                    <button class="btn">查看详情</button>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <span class="card-tag">高清剧照</span>
+                    <img src="https://picsum.photos/seed/pinkdress/400/560" alt="粉衣女子剧照" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">粉色午后时光</h3>
+                    <div class="card-meta">
+                        <span>2024-04-28</span>
+                        <span>4K</span>
+                    </div>
+                    <p class="card-desc">聚焦于粉衣女子的日常生活片段，画面温馨，色调柔和，展现都市女性的细腻情感。</p>
+                    <button class="btn">查看详情</button>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <span class="card-tag">最新收录</span>
+                    <img src="https://picsum.photos/seed/elevator2/400/560" alt="电梯内景" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">深夜电梯惊魂</h3>
+                    <div class="card-meta">
+                        <span>2024-04-15</span>
+                        <span>1080P</span>
+                    </div>
+                    <p class="card-desc">紧张刺激的悬疑短片，故事发生在深夜的写字楼电梯内，情节跌宕起伏。</p>
+                    <button class="btn">查看详情</button>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="card">
+                <div class="card-img-wrapper">
+                    <span class="card-tag">精选合集</span>
+                    <img src="https://picsum.photos/seed/scene3/400/560" alt="场景展示" class="card-img">
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">经典场景回顾</h3>
+                    <div class="card-meta">
+                        <span>2024-03-20</span>
+                        <span>HD</span>
+                    </div>
+                    <p class="card-desc">汇集多部经典影视作品中关于电梯场景的精彩片段，回顾那些令人印象深刻的瞬间。</p>
+                    <button class="btn">查看详情</button>
+                </div>
+            </article>
+        </section>
+
+        <!-- Information Section -->
+        <section class="info-section">
+            <h2>关于电梯场景影视资源</h2>
+            <div class="info-grid">
+                <div class="info-text">
+                    <p>电梯场景作为影视作品中常见的特定空间，往往能营造出封闭、压抑或意外的氛围。粉衣女子作为视觉元素之一，常用于特定风格的剧情片中，以展现角色的性格特征或视觉美感。</p>
+                    <p>本站致力于为用户提供安全、规范的影视资源导航服务。所有收录内容均来自公开渠道，旨在满足影视爱好者对特定场景和角色的研究、欣赏需求。</p>
+                </div>
+                <div class="info-list">
+                    <h3>浏览指南</h3>
+                    <li>使用顶部导航栏切换不同分类</li>
+                    <li>通过筛选器查找特定年代或类型</li>
+                    <li>点击“查看详情”获取完整资源信息</li>
+                    <li>支持高清与4K画质选择</li>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="info-section">
+            <h2>常见问题 (FAQ)</h2>
+            <div style="margin-top: 20px;">
+                <details style="margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 4px; cursor: pointer;">
+                    <summary style="font-weight: bold; color: var(--primary-color);">这些资源是免费的吗？</summary>
+                    <p style="margin-top: 10px; color: #666;">本站提供的是资源导航服务，具体观看方式和费用请参阅各资源页面的说明。</p>
+                </details>
+                <details style="margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 4px; cursor: pointer;">
+                    <summary style="font-weight: bold; color: var(--primary-color);">如何找到特定类型的作品？</summary>
+                    <p style="margin-top: 10px; color: #666;">您可以使用页面顶部的搜索框或分类筛选器，输入关键词（如“电梯”、“粉衣”）进行精确查找。</p>
+                </details>
+                <details style="margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 4px; cursor: pointer;">
+                    <summary style="font-weight: bold; color: var(--primary-color);">网站更新频率如何？</summary>
+                    <p style="margin-top: 10px; color: #666;">我们保持每周至少一次的更新频率，新增符合“电梯粉衣女子番号”等关键词的相关收录。</p>
+                </details>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="#">关于我们</a>
+            <a href="#">免责声明</a>
+            <a href="#">联系方式</a>
+            <a href="#">隐私政策</a>
+        </div>
+        <p>&copy; 2024 影视导航站. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px; color: #777;">本站内容仅供学习交流，请勿用于任何商业用途。</p>
+    </div>
+</footer>
+
+</body>
+</html>
