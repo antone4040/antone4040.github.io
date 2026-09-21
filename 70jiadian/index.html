@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>70加点模拟器 - 灵活分配属性点 打造最强角色</title>
+    <meta name="description" content="70加点模拟器是一款功能强大的属性分配工具，支持力量、敏捷、智力等多种属性的自由分配。通过可视化的图表展示加点方案，帮助玩家在游戏初期或中期制定最优成长路线。">
+    <meta name="keywords" content="70加点模拟器, 属性加点, 游戏模拟, 角色养成, 力量敏捷智力">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-sub);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Main Tool Area */
+        .tool-section {
+            margin-top: -2rem;
+            margin-bottom: 3rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-item {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .stat-name {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-control {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.2s;
+        }
+
+        .btn-control:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .btn-control:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            background: #eee;
+        }
+
+        .total-points {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f1f5f9;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+        }
+
+        .total-points strong {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-left: 5px;
+        }
+
+        .action-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--border);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        /* Result Visualization */
+        .result-viz {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            padding: 20px 0;
+            gap: 10px;
+        }
+
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .bar {
+            width: 40px;
+            background: var(--primary);
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease-out;
+            min-height: 4px;
+            position: relative;
+        }
+
+        .bar:hover::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .bar-label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            font-weight: 500;
+        }
+
+        /* Content Sections */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 1.5rem;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .guide-list {
+            list-style: none;
+        }
+
+        .guide-list li {
+            background: white;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: start;
+            gap: 15px;
+        }
+
+        .guide-icon {
+            font-size: 1.5rem;
+            background: #eff6ff;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .guide-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .guide-content p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        /* Tips & FAQ */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .tip-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-card p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            background: #f8fafc;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f1f5f9;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1rem 1.5rem 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-wrapper {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .action-bar {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <span>70</span>加点模拟器
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#guide">加点指南</a></li>
+                    <li><a href="#tips">新手提示</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>70加点模拟器：免费在线属性分配工具</h1>
+                <p>无需手动计算，实时查看力量、敏捷、智力、体质对角色的影响。为您的游戏角色制定最优成长方案。</p>
+            </div>
+        </section>
+
+        <!-- Tool Section -->
+        <section class="container tool-section" id="tool">
+            <div class="tool-card">
+                <div class="total-points">
+                    已使用点数：<strong id="current-points">0</strong> / 70
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-name">力量</div>
+                        <div class="stat-value" id="val-str">0</div>
+                        <div class="stat-controls">
+                            <button class="btn-control" onclick="adjustStat('str', -1)" aria-label="减少力量">−</button>
+                            <button class="btn-control" onclick="adjustStat('str', 1)" aria-label="增加力量">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-name">敏捷</div>
+                        <div class="stat-value" id="val-agi">0</div>
+                        <div class="stat-controls">
+                            <button class="btn-control" onclick="adjustStat('agi', -1)" aria-label="减少敏捷">−</button>
+                            <button class="btn-control" onclick="adjustStat('agi', 1)" aria-label="增加敏捷">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-name">智力</div>
+                        <div class="stat-value" id="val-int">0</div>
+                        <div class="stat-controls">
+                            <button class="btn-control" onclick="adjustStat('int', -1)" aria-label="减少智力">−</button>
+                            <button class="btn-control" onclick="adjustStat('int', 1)" aria-label="增加智力">+</button>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-name">体质</div>
+                        <div class="stat-value" id="val-vit">0</div>
+                        <div class="stat-controls">
+                            <button class="btn-control" onclick="adjustStat('vit', -1)" aria-label="减少体质">−</button>
+                            <button class="btn-control" onclick="adjustStat('vit', 1)" aria-label="增加体质">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-viz">
+                    <div class="chart-container">
+                        <div class="bar-group">
+                            <div class="bar" id="bar-str" style="height: 4px;" data-value="0"></div>
+                            <div class="bar-label">力量</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" id="bar-agi" style="height: 4px;" data-value="0"></div>
+                            <div class="bar-label">敏捷</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" id="bar-int" style="height: 4px;" data-value="0"></div>
+                            <div class="bar-label">智力</div>
+                        </div>
+                        <div class="bar-group">
+                            <div class="bar" id="bar-vit" style="height: 4px;" data-value="0"></div>
+                            <div class="bar-label">体质</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-secondary" onclick="resetStats()">重置所有</button>
+                    <button class="btn btn-primary" onclick="randomStats()">随机生成</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide Section -->
+        <section class="container" id="guide">
+            <h2 class="section-title">加点策略指南</h2>
+            <div class="content-grid">
+                <div>
+                    <ul class="guide-list">
+                        <li>
+                            <div class="guide-icon">⚔️</div>
+                            <div class="guide-content">
+                                <h3>力量型加点</h3>
+                                <p>适合近战物理输出职业。力量直接提升物理攻击力，是战士、骑士等角色的核心属性。建议保留 1-2 点体质以保证生存。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guide-icon">🏹</div>
+                            <div class="guide-content">
+                                <h3>敏捷型加点</h3>
+                                <p>适合弓箭手、刺客等职业。敏捷不仅增加攻击速度和暴击率，还能提供闪避能力。70级时高敏捷是秒杀敌人的关键。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guide-icon">🧙</div>
+                            <div class="guide-content">
+                                <h3>智力型加点</h3>
+                                <p>专为法师和术士设计。智力决定法术伤害上限和魔法值上限。智力加点能显著提升AOE清怪效率，但需注意蓝量管理。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="guide-icon">🛡️</div>
+                            <div class="guide-content">
+                                <h3>体质型加点</h3>
+                                <p>坦克与生存向选择。体质增加生命值上限和物理防御。在PVP或高难度副本中，稳定的血量比爆发更重要。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <aside>
+                    <div class="tip-card" style="margin-bottom: 1.5rem;">
+                        <h4>💡 小贴士</h4>
+                        <p>在加点模拟器中，您可以随时切换属性查看数值变化。点击“随机生成”功能，系统会自动为您分配一个平衡的加点方案。</p>
+                    </div>
+                    <div class="tip-card">
+                        <h4>⚠️ 注意事项</h4>
+                        <p>不同职业对属性的需求不同，请参考官方职业手册。某些装备可能带有属性加成，请结合自身装备进行微调。</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="container" id="tips">
+            <h2 class="section-title">热门加点流派推荐</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>🔥 爆发流</h4>
+                    <p>全属性倾向攻击力。牺牲防御和血量，追求瞬间打出最高伤害，适合PVP竞技场和单刷精英怪。</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🛡️ 铁壁流</h4>
+                    <p>全体质加点。几乎免疫物理伤害，是团队副本中不可或缺的肉盾角色，操作简单，容错率高。</p>
+                </div>
+                <div class="tip-card">
+                    <h4>⚡ 平衡流</h4>
+                    <p>4:3:2:1 的黄金比例。兼顾输出与生存，适合大多数普通副本和日常任务，能适应各种突发情况。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="container" id="faq">
+            <h2 class="section-title">常见问题 (FAQ)</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">如何使用70加点模拟器？ <span>▼</span></div>
+                <div class="faq-answer">
+                    <p>只需点击上方的“+”或“-”按钮即可增加或减少对应属性点。系统会自动计算剩余点数，并实时更新下方的柱状图。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">为什么我的加点总和超过70？ <span>▼</span></div>
+                <div class="faq-answer">
+                    <p>这是不正常的。请检查是否点击了错误的按钮。如果点击“随机生成”后超过限制，请点击“重置所有”重新开始。</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">这个模拟器支持移动端吗？ <span>▼</span></div>
+                <div class="faq-answer">
+                    <p>完全支持。您可以直接在手机浏览器中打开本页面，使用触摸按钮进行加点操作，界面会自动适配屏幕大小。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>关于工具</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">70加点模拟器致力于为玩家提供最便捷的属性分配辅助工具，帮助玩家在游戏初期做出最优决策。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">游戏官网</a></li>
+                        <li><a href="#">职业攻略</a></li>
+                        <li><a href="#">装备图鉴</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">使用条款</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 70加点模拟器. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+
+    <script>
+        // Initial Stats
+        const maxPoints = 70;
+        let stats = {
+            str: 0,
+            agi: 0,
+            int: 0,
+            vit: 0
+        };
+
+        // DOM Elements
+        const elCurrentPoints = document.getElementById('current-points');
+        const elValStr = document.getElementById('val-str');
+        const elValAgi = document.getElementById('val-agi');
+        const elValInt = document.getElementById('val-int');
+        const elValVit = document.getElementById('val-vit');
+        const elBarStr = document.getElementById('bar-str');
+        const elBarAgi = document.getElementById('bar-agi');
+        const elBarInt = document.getElementById('bar-int');
+        const elBarVit = document.getElementById('bar-vit');
+
+        function updateDisplay() {
+            const current = stats.str + stats.agi + stats.int + stats.vit;
+            elCurrentPoints.textContent = current;
+            
+            // Update text values
+            elValStr.textContent = stats.str;
+            elValAgi.textContent = stats.agi;
+            elValInt.textContent = stats.int;
+            elValVit.textContent = stats.vit;
+
+            // Update Bars (Visual scaling: max 50 points = 100% height)
+            const maxVisual = 50;
+            const scale = 100 / maxVisual;
+
+            setBarHeight(elBarStr, stats.str, scale);
+            setBarHeight(elBarAgi, stats.agi, scale);
+            setBarHeight(elBarInt, stats.int, scale);
+            setBarHeight(elBarVit, stats.vit, scale);
+        }
+
+        function setBarHeight(element, value, scale) {
+            const height = Math.max(4, value * scale); // Minimum 4px for visibility
+            element.style.height = `${height}%`;
+            element.setAttribute('data-value', value);
+        }
+
+        function adjustStat(type, amount) {
+            const newValue = stats[type] + amount;
+            const currentTotal = stats.str + stats.agi + stats.int + stats.vit;
+
+            if (newValue < 0) return; // Cannot go below 0
+            if (currentTotal + amount > maxPoints) return; // Cannot exceed 70
+
+            stats[type] = newValue;
+            updateDisplay();
+        }
+
+        function resetStats() {
+            stats = { str: 0, agi: 0, int: 0, vit: 0 };
+            updateDisplay();
+        }
+
+        function randomStats() {
+            let remaining = maxPoints;
+            stats = { str: 0, agi: 0, int: 0, vit: 0 };
+
+            // Simple random distribution
+            while (remaining > 0) {
+                const keys = Object.keys(stats);
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                // Add between 1 and remaining points to a random stat
+                const add = Math.floor(Math.random() * remaining) + 1;
+                if (stats[randomKey] + add <= remaining) {
+                    stats[randomKey] += add;
+                    remaining -= add;
+                }
+            }
+            updateDisplay();
+        }
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+            
+            // Close others (optional accordion behavior)
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(otherItem => {
+                if (otherItem !== item) otherItem.classList.remove('active');
+            });
+        }
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+  </html>
