@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西瓜电影-高清免费在线观看与影视资讯平台</title>
+    <meta name="description" content="西瓜电影提供最新最全的免费在线电影观看服务，涵盖动作、喜剧、科幻、动漫等热门类型。支持高清播放、剧情简介、演员表查询及影视资讯更新。">
+    <meta name="keywords" content="西瓜电影,在线观看,免费电影,高清影视,电影推荐,最新电影">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff5e00;
+            --primary-hover: #e04d00;
+            --bg-color: #0f1014;
+            --card-bg: #1b1d24;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --nav-bg: rgba(15, 16, 20, 0.95);
+            --border-color: #2c2e36;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --container-width: 1200px;
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 4px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            outline: none;
+            width: 160px;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            position: relative;
+            height: 500px;
+            background: linear-gradient(to bottom, rgba(15, 16, 20, 0.3), var(--bg-color)), url('https://picsum.photos/seed/cinema/1920/1080') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            padding: var(--spacing-lg);
+            background: linear-gradient(90deg, rgba(15,16,20,0.95) 0%, rgba(15,16,20,0.6) 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 4px;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            margin-left: var(--spacing-md);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-main);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: var(--spacing-lg);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .section-more {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Movie Grid */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .movie-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .poster-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* Aspect ratio */
+        }
+
+        .poster-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: var(--spacing-md);
+        }
+
+        .movie-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .quality-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 10px;
+            border-radius: 2px;
+        }
+
+        /* Category Nav */
+        .category-nav {
+            display: flex;
+            gap: var(--spacing-md);
+            overflow-x: auto;
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            scrollbar-width: none;
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-item {
+            padding: 8px 20px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .cat-item:hover, .cat-item.active {
+            background-color: rgba(255, 94, 0, 0.1);
+            color: var(--primary-color);
+            border-color: rgba(255, 94, 0, 0.3);
+        }
+
+        /* Info Layout */
+        .info-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .news-list li {
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .news-list li:last-child {
+            border-bottom: none;
+        }
+
+        .news-title {
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .sidebar-box {
+            background-color: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius);
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rank-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .rank-num {
+            width: 20px;
+            height: 20px;
+            background-color: var(--border-color);
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 20px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .rank-list li:nth-child(1) .rank-num { background-color: #ff5e00; color: #fff; }
+        .rank-list li:nth-child(2) .rank-num { background-color: #ff9e00; color: #fff; }
+        .rank-list li:nth-child(3) .rank-num { background-color: #ffcd00; color: #000; }
+
+        /* Footer */
+        footer {
+            background-color: #08090c;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: var(--spacing-sm);
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-size: 16px;
+            margin-bottom: var(--spacing-md);
+            color: var(--text-main);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-wrap: wrap;
+            }
+            nav {
+                display: none; /* Simplified for mobile */
+            }
+            .search-box {
+                display: none;
+            }
+            .hero {
+                height: 350px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .info-layout {
+                grid-template-columns: 1fr;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>西瓜电影</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">动作片</a></li>
+                    <li><a href="#">喜剧片</a></li>
+                    <li><a href="#">科幻片</a></li>
+                    <li><a href="#">爱情片</a></li>
+                    <li><a href="#">动漫</a></li>
+                    <li><a href="#">电视剧</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索电影、电视剧...">
+                <button type="button">🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <section class="hero">
+            <div class="container hero-content">
+                <span class="hero-tag">本周推荐</span>
+                <h1>星际穿越：深空归来</h1>
+                <p>在未来的宇宙边缘，人类面临前所未有的生存危机。一群勇敢的探险家穿越虫洞，寻找适合居住的新家园，揭开宇宙终极秘密。</p>
+                <div>
+                    <button class="btn btn-primary">立即观看</button>
+                    <button class="btn btn-outline">剧情简介</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Categories -->
+            <div class="category-nav">
+                <div class="cat-item active">全部</div>
+                <div class="cat-item">动作</div>
+                <div class="cat-item">喜剧</div>
+                <div class="cat-item">科幻</div>
+                <div class="cat-item">悬疑</div>
+                <div class="cat-item">恐怖</div>
+                <div class="cat-item">爱情</div>
+                <div class="cat-item">纪录片</div>
+                <div class="cat-item">国产剧</div>
+                <div class="cat-item">美剧</div>
+                <div class="cat-item">韩剧</div>
+                <div class="cat-item">日剧</div>
+            </div>
+
+            <!-- Latest Updates -->
+            <section>
+                <div class="section-header">
+                    <h2 class="section-title">最新更新</h2>
+                    <a href="#" class="section-more">更多 &gt;</a>
+                </div>
+                <div class="movie-grid">
+                    <!-- Movie Card 1 -->
+                    <article class="movie-card">
+                        <div class="poster-wrapper">
+                            <span class="quality-badge">HD</span>
+                            <img src="https://picsum.photos/seed/movie1/300/420" alt="电影海报">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="movie-title">暗夜追凶</h3>
+                            <div class="movie-meta">
+                                <span>2023</span>
+                                <span>科幻/悬疑</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Movie Card 2 -->
+                    <article class="movie-card">
+                        <div class="poster-wrapper">
+                            <span class="quality-badge">4K</span>
+                            <img src="https://picsum.photos/seed/movie2/300/420" alt="电影海报">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="movie-title">夏日里的蝉鸣</h3>
+                            <div class="movie-meta">
+                                <span>2023</span>
+                                <span>爱情/剧情</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Movie Card 3 -->
+                    <article class="movie-card">
+                        <div class="poster-wrapper">
+                            <span class="quality-badge">HD</span>
+                            <img src="https://picsum.photos/seed/movie3/300/420" alt="电影海报">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="movie-title">极速风暴</h3>
+                            <div class="movie-meta">
+                                <span>2024</span>
+                                <span>动作/冒险</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Movie Card 4 -->
+                    <article class="movie-card">
+                        <div class="poster-wrapper">
+                            <span class="quality-badge">HD</span>
+                            <img src="https://picsum.photos/seed/movie4/300/420" alt="电影海报">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="movie-title">AI觉醒</h3>
+                            <div class="movie-meta">
+                                <span>2024</span>
+                                <span>科幻/惊悚</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Movie Card 5 -->
+                    <article class="movie-card">
+                        <div class="poster-wrapper">
+                            <span class="quality-badge">HD</span>
+                            <img src="https://picsum.photos/seed/movie5/300/420" alt="电影海报">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="movie-title">古堡迷案</h3>
+                            <div class="movie-meta">
+                                <span>2022</span>
+                                <span>悬疑/犯罪</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Movie Card 6 -->
+                    <article class="movie-card">
+                        <div class="poster-wrapper">
+                            <span class="quality-badge">HD</span>
+                            <img src="https://picsum.photos/seed/movie6/300/420" alt="电影海报">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="movie-title">深海探秘</h3>
+                            <div class="movie-meta">
+                                <span>2023</span>
+                                <span>纪录片</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <div class="info-layout">
+                <section>
+                    <div class="section-header">
+                        <h2 class="section-title">影视资讯</h2>
+                    </div>
+                    <ul class="news-list">
+                        <li>
+                            <a href="#" class="news-title">2024年暑期档大片盘点：期待值拉满</a>
+                            <span class="news-date">2小时前</span>
+                        </li>
+                        <li>
+                            <a href="#" class="news-title">国产科幻电影崛起：技术突破与叙事创新</a>
+                            <span class="news-date">5小时前</span>
+                        </li>
+                        <li>
+                            <a href="#" class="news-title">经典港片回顾：为什么它们至今无法超越？</a>
+                            <span class="news-date">1天前</span>
+                        </li>
+                        <li>
+                            <a href="#" class="news-title">漫威新片定档，影迷：终于等到你</a>
+                            <span class="news-date">2天前</span>
+                        </li>
+                        <li>
+                            <a href="#" class="news-title">奥斯卡获奖名单公布，最佳影片归属悬念揭晓</a>
+                            <span class="news-date">3天前</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <aside>
+                    <div class="sidebar-box">
+                        <h3 class="sidebar-title">热门排行榜</h3>
+                        <ul class="rank-list">
+                            <li>
+                                <span class="rank-num">1</span>
+                                <a href="#">盗梦空间</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">2</span>
+                                <a href="#">肖申克的救赎</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">3</span>
+                                <a href="#">霸王别姬</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">4</span>
+                                <a href="#">阿甘正传</a>
+                            </li>
+                            <li>
+                                <span class="rank-num">5</span>
+                                <a href="#">泰坦尼克号</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-box" style="margin-top: 24px;">
+                        <h3 class="sidebar-title">播放设备支持</h3>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+                            西瓜电影支持手机、平板、电脑、智能电视等多种设备在线播放，无需下载客户端。
+                        </p>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <span style="background: #333; padding: 4px 8px; border-radius: 4px; font-size: 12px;">📱 手机</span>
+                            <span style="background: #333; padding: 4px 8px; border-radius: 4px; font-size: 12px;">💻 电脑</span>
+                            <span style="background: #333; padding: 4px 8px; border-radius: 4px; font-size: 12px;">📺 电视</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span>西瓜电影</span>
+                    </a>
+                    <p>专注于提供高清、流畅、免费的在线电影观看体验。每日更新海量影视资源，满足您的观影需求。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>网站导航</h4>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">最新电影</a></li>
+                        <li><a href="#">热门电视剧</a></li>
+                        <li><a href="#">高分榜单</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>常见问题</h4>
+                    <ul>
+                        <li><a href="#">如何播放？</a></li>
+                        <li><a href="#">广告拦截说明</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">粉丝群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 西瓜电影. All Rights Reserved. 本站仅提供电影资源信息索引服务。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+  </html>
