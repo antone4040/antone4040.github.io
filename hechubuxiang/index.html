@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="何处不相逢 - 现代情感图文社区与故事分享平台。在这里记录生活中的每一次偶遇，分享关于缘分、重逢与未完待续的故事。">
+    <meta name="keywords" content="何处不相逢, 遇见, 故事, 缘分, 情感, 社区">
+    <title>何处不相逢 - 每一次偶遇都是久别重逢的故事</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #6a1b9a;
+            --primary-light: #9c4dcc;
+            --accent-color: #ff4081;
+            --text-dark: #2c2c2c;
+            --text-gray: #666666;
+            --bg-body: #f9f9f9;
+            --bg-card: #ffffff;
+            --radius-md: 12px;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-hover: 0 8px 24px rgba(106, 27, 154, 0.15);
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout Utilities */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-gray);
+            font-size: 16px;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+');
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat-item h3 {
+            font-size: 32px;
+            color: var(--text-dark);
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Features / Concept */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .concept-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #f3e5f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+        }
+
+        .concept-card h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .concept-card p {
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+
+        /* Content Section */
+        .content-section {
+            background-color: var(--bg-body);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 24px;
+            border-radius: 30px;
+            background: white;
+            border: 1px solid #eee;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .story-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            height: 220px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .story-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .card-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .author-name {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .likes {
+            font-size: 13px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Interactive Section: Map */
+        .map-section {
+            background: white;
+            text-align: center;
+        }
+
+        .map-container {
+            position: relative;
+            height: 500px;
+            background: #e3f2fd;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UzZjJmZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2Y3ZjdmNyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjIwJSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+');
+        }
+
+        .map-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 64, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 64, 129, 0); }
+        }
+
+        .map-tooltip {
+            position: absolute;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            transform: translate(-50%, -150%);
+            white-space: nowrap;
+        }
+
+        .map-point:hover .map-tooltip {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .newsletter input {
+            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            width: 100%;
+            margin-bottom: 10px;
+            background: #333;
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 42px; }
+            .concept-grid { grid-template-columns: 1fr; margin-top: 0; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; height: auto; padding: 15px 0; }
+            nav ul { margin: 15px 0; gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .hero { height: 500px; }
+            .hero h1 { font-size: 32px; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .story-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">何处不相逢<span>.</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">精选故事</a></li>
+                    <li><a href="#">城市地图</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline">登录</button>
+                <button class="btn btn-primary">发布故事</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <h1>每一次偶遇，都是久别重逢</h1>
+                <p>在这个偌大的城市里，人与人的相遇概率只有千万分之一。在这里，记录那些让你心动的瞬间，分享关于缘分、重逢与未完待续的故事。</p>
+                <div class="cta-group">
+                    <button class="btn btn-primary" style="padding: 12px 32px; font-size: 16px;">探索故事</button>
+                    <button class="btn btn-outline" style="padding: 12px 32px; font-size: 16px; margin-left: 10px;">查看地图</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <h3>12,845</h3>
+                        <p>真实故事</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>3,204</h3>
+                        <p>相遇坐标</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>892k</h3>
+                        <p>温暖瞬间</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Concept Section -->
+        <section class="container">
+            <div class="concept-grid">
+                <article class="concept-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>遇见陌生人</h3>
+                    <p>分享你在街头巷尾、咖啡馆、书店或地铁站遇到的那个陌生人。也许是一次眼神的交汇，也许是一段短暂的交谈。</p>
+                </article>
+                <article class="concept-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <h3>久别重逢</h3>
+                    <p>记录那些多年后再次相遇的老友、初恋或故人。时间改变了容颜，却改变了重逢时的那份悸动。</p>
+                </article>
+                <article class="concept-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h3>意外缘分</h3>
+                    <p>生活中的意外往往藏着最好的礼物。讲述那些看似偶然，实则命中注定的相遇经历。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Content Section -->
+        <section class="content-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>最近的热门相遇</h2>
+                    <p>看看大家都在哪里发生了什么故事</p>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-btn active">全部</button>
+                    <button class="filter-btn">街头偶遇</button>
+                    <button class="filter-btn">咖啡馆</button>
+                    <button class="filter-btn">网络奇缘</button>
+                    <button class="filter-btn">老友重逢</button>
+                </div>
+
+                <div class="story-grid">
+                    <!-- Story 1 -->
+                    <article class="story-card">
+                        <div class="card-image">
+                            <span class="tag">街头</span>
+                            <img src="https://picsum.photos/seed/story1/400/300" alt="故事封面">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2小时前</span>
+                                <span>上海·静安寺</span>
+                            </div>
+                            <h3 class="card-title">暴雨中的伞</h3>
+                            <p class="card-desc">今天下着暴雨，我在路边等车。一个陌生的男生把伞递给了我，自己淋着雨跑进了地铁口。那是今天最温暖的一件事。</p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <div class="avatar" style="background-image: url('https://picsum.photos/seed/user1/50/50'); background-size: cover;"></div>
+                                    <span class="author-name">林间鹿</span>
+                                </div>
+                                <div class="likes">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    328
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Story 2 -->
+                    <article class="story-card">
+                        <div class="card-image">
+                            <span class="tag">咖啡店</span>
+                            <img src="https://picsum.photos/seed/story2/400/300" alt="故事封面">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>5小时前</span>
+                                <span>北京·三里屯</span>
+                            </div>
+                            <h3 class="card-title">错过的拼桌</h3>
+                            <p class="card-desc">在咖啡店拼桌时，对面的人一直在看一本书。后来才发现那本书我买了两本，一本在书架上落灰，一本在包里。</p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <div class="avatar" style="background-image: url('https://picsum.photos/seed/user2/50/50'); background-size: cover;"></div>
+                                    <span class="author-name">猫薄荷</span>
+                                </div>
+                                <div class="likes">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    156
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Story 3 -->
+                    <article class="story-card">
+                        <div class="card-image">
+                            <span class="tag">重逢</span>
+                            <img src="https://picsum.photos/seed/story3/400/300" alt="故事封面">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>1天前</span>
+                                <span>广州·天河城</span>
+                            </div>
+                            <h3 class="card-title">十年后再见</h3>
+                            <p class="card-desc">在商场转角，突然听到有人喊我的名字。回头看，是高中同桌。我们居然在同一个城市工作，而且就隔了三条街。</p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <div class="avatar" style="background-image: url('https://picsum.photos/seed/user3/50/50'); background-size: cover;"></div>
+                                    <span class="author-name">旧时光</span>
+                                </div>
+                                <div class="likes">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    892
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Story 4 -->
+                    <article class="story-card">
+                        <div class="card-image">
+                            <span class="tag">网络</span>
+                            <img src="https://picsum.photos/seed/story4/400/300" alt="故事封面">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>2天前</span>
+                                <span>线上社区</span>
+                            </div>
+                            <h3 class="card-title">代码里的代码</h3>
+                            <p class="card-desc">在GitHub上提交了一个Bug修复，收到了一个来自异国他乡的Pull Request。原来我们都在为了同一个功能熬夜。</p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <div class="avatar" style="background-image: url('https://picsum.photos/seed/user4/50/50'); background-size: cover;"></div>
+                                    <span class="author-name">极客阿文</span>
+                                </div>
+                                <div class="likes">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    210
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Story 5 -->
+                    <article class="story-card">
+                        <div class="card-image">
+                            <span class="tag">机场</span>
+                            <img src="https://picsum.photos/seed/story5/400/300" alt="故事封面">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>3天前</span>
+                                <span>成都·双流机场</span>
+                            </div>
+                            <h3 class="card-title">行李箱的密码</h3>
+                            <p class="card-desc">在机场候机时，我的行李箱开了。一位老奶奶帮我收拾好，并告诉我她的密码是女儿的生日。</p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <div class="avatar" style="background-image: url('https://picsum.photos/seed/user5/50/50'); background-size: cover;"></div>
+                                    <span class="author-name">旅行者</span>
+                                </div>
+                                <div class="likes">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    445
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Story 6 -->
+                    <article class="story-card">
+                        <div class="card-image">
+                            <span class="tag">书店</span>
+                            <img src="https://picsum.photos/seed/story6/400/300" alt="故事封面">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-meta">
+                                <span>4天前</span>
+                                <span>杭州·西西弗</span>
+                            </div>
+                            <h3 class="card-title">同一本书</h3>
+                            <p class="card-desc">我们同时伸手去拿那本《小王子》，手指碰在了一起。虽然后来没有交换联系方式，但那个触碰让我记了很久。</p>
+                            <div class="card-footer">
+                                <div class="author">
+                                    <div class="avatar" style="background-image: url('https://picsum.photos/seed/user6/50/50'); background-size: cover;"></div>
+                                    <span class="author-name">书虫小美</span>
+                                </div>
+                                <div class="likes">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    677
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div style="text-align: center; margin-top: 50px;">
+                    <button class="btn btn-outline" style="padding: 12px 40px;">加载更多</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>相遇坐标</h2>
+                    <p>查看最近发生故事的热门地点</p>
+                </div>
+                <div class="map-container">
+                    <!-- Simulated Map Points -->
+                    <div class="map-point" style="top: 30%; left: 40%;">
+                        <div class="map-tooltip">上海·静安寺</div>
+                    </div>
+                    <div class="map-point" style="top: 50%; left: 60%; animation-delay: 0.5s;">
+                        <div class="map-tooltip">北京·三里屯</div>
+                    </div>
+                    <div class="map-point" style="top: 70%; left: 30%; animation-delay: 1s;">
+                        <div class="map-tooltip">成都·春熙路</div>
+                    </div>
+                    <div class="map-point" style="top: 20%; left: 70%; animation-delay: 1.5s;">
+                        <div class="map-tooltip">广州·天河城</div>
+                    </div>
+                    <div class="map-point" style="top: 60%; left: 20%; animation-delay: 0.3s;">
+                        <div class="map-tooltip">杭州·西湖</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>何处不相逢.</h2>
+                    <p>记录生活，遇见美好。我们致力于构建一个温暖、真实的社区，让每一个平凡的日子都充满期待。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>探索</h4>
+                    <ul>
+                        <li><a href="#">最新故事</a></li>
+                        <li><a href="#">热门榜单</a></li>
+                        <li><a href="#">城市地图</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="#">社区指南</a></li>
+                        <li><a href="#">投稿规则</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h4>订阅更新</h4>
+                    <p style="margin-bottom: 10px; font-size: 13px;">获取每周精选故事推送</p>
+                    <input type="email" placeholder="输入您的邮箱">
+                    <button class="btn btn-primary" style="width: 100%; padding: 10px;">订阅</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 何处不相逢. All rights reserved. 此页面为设计展示，非真实网站。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                              </html>
