@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="皇族战队官方网站，提供英雄联盟、王者荣耀等热门电竞项目的最新资讯、战队动态、选手介绍及赛事直播预约服务。">
+    <meta name="keywords" content="皇族战队, RNG, 英雄联盟, 电竞战队, RNG官网, 游戏资讯">
+    <title>皇族战队 - 电竞荣耀与职业战队官方主页</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ffaa00;
+            --secondary-color: #1a1a1a;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --spacing-unit: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header-top {
+            background-color: #000;
+            font-size: 12px;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        .header-top span {
+            color: var(--primary-color);
+            margin: 0 5px;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://picsum.photos/seed/esports/1920/1080') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-weight: 700;
+            border-radius: 4px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #e69500;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--secondary-color);
+        }
+
+        /* News Section */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 5px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .news-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            color: var(--text-light);
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Teams Section */
+        .teams-section {
+            background-color: var(--white);
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: var(--primary-color);
+            background-color: #fffbf0;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            object-fit: cover;
+            border: 3px solid #eee;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            background-color: #222;
+            color: var(--white);
+        }
+
+        .schedule-section .section-title {
+            color: var(--white);
+        }
+
+        .schedule-section .section-title::before {
+            background-color: var(--primary-color);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        .schedule-table th {
+            background-color: #333;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .match-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-live {
+            background-color: #d32f2f;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-upcoming {
+            background-color: #555;
+            color: #ccc;
+        }
+
+        .status-finished {
+            background-color: #333;
+            color: #888;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #888;
+            padding: 60px 0 20px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            margin-bottom: 10px;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .teams-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-main {
+                flex-wrap: wrap;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            nav.active {
+                display: block;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .teams-grid {
+                grid-template-columns: 1fr;
+            }
+            .schedule-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <span>●</span> 官方认证 · 专业电竞 · 皇族荣耀 <span>●</span>
+        </div>
+        <div class="container header-main">
+            <a href="#" class="logo">皇族<span>战队</span></a>
+            <button class="mobile-menu-btn" aria-label="菜单">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#news">战队动态</a></li>
+                    <li><a href="#teams">参赛选手</a></li>
+                    <li><a href="#schedule">赛程赛果</a></li>
+                    <li><a href="#">周边商城</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>皇族战队 <span>RNG</span></h1>
+                <p>从2013年至今，皇族战队始终以追求卓越、永不言弃的精神征战于各大赛场，见证冠军时刻，传承电竞精神。</p>
+                <a href="#schedule" class="btn">观看直播</a>
+                <a href="#news" class="btn btn-outline">了解更多</a>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">战队动态</h2>
+                    <a href="#" style="color: var(--primary-color); font-weight: 500;">查看更多 &rarr;</a>
+                </div>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/esports1/400/250" alt="战队训练照" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">训练日常</span>
+                            <h3 class="news-title">夏季赛备战：队员们的高强度训练纪实</h3>
+                            <div class="news-meta">
+                                <span>2023-10-15</span>
+                                <span>编辑：RNG Staff</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/esports2/400/250" alt="赛场合影" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">赛事新闻</span>
+                            <h3 class="news-title">LPL春季赛常规赛收官：皇族成功晋级季后赛</h3>
+                            <div class="news-meta">
+                                <span>2023-03-28</span>
+                                <span>编辑：RNG Staff</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://picsum.photos/seed/esports3/400/250" alt="赞助商签约" class="news-img">
+                        <div class="news-content">
+                            <span class="news-tag">商业合作</span>
+                            <h3 class="news-title">皇族战队官宣成为某知名外设品牌年度合作伙伴</h3>
+                            <div class="news-meta">
+                                <span>2023-02-10</span>
+                                <span>编辑：RNG Staff</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teams Section -->
+        <section id="teams" class="section teams-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">核心阵容</h2>
+                    <a href="#" style="color: var(--primary-color); font-weight: 500;">查看完整名单 &rarr;</a>
+                </div>
+                <div class="teams-grid">
+                    <div class="team-card">
+                        <img src="https://picsum.photos/seed/player1/150/150" alt="上单选手" class="team-avatar">
+                        <h3 class="team-name">选手A</h3>
+                        <p class="team-role">上单 / Top Laner</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://picsum.photos/seed/player2/150/150" alt="打野选手" class="team-avatar">
+                        <h3 class="team-name">选手B</h3>
+                        <p class="team-role">打野 / Jungle</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://picsum.photos/seed/player3/150/150" alt="中单选手" class="team-avatar">
+                        <h3 class="team-name">选手C</h3>
+                        <p class="team-role">中单 / Mid Laner</p>
+                    </div>
+                    <div class="team-card">
+                        <img src="https://picsum.photos/seed/player4/150/150" alt="ADC选手" class="team-avatar">
+                        <h3 class="team-name">选手D</h3>
+                        <p class="team-role">ADC / Marksman</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="section schedule-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">赛程赛果</h2>
+                </div>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>比赛日期</th>
+                            <th>赛事名称</th>
+                            <th>对阵双方</th>
+                            <th>状态</th>
+                            <th>直播链接</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10月24日 18:00</td>
+                            <td>LPL 夏季赛常规赛</td>
+                            <td>皇族战队 vs 对手战队</td>
+                            <td><span class="match-status status-live">直播中</span></td>
+                            <td><a href="#" style="color: var(--primary-color);">点击观看</a></td>
+                        </tr>
+                        <tr>
+                            <td>10月27日 15:00</td>
+                            <td>LPL 夏季赛常规赛</td>
+                            <td>皇族战队 vs 对手战队</td>
+                            <td><span class="match-status status-upcoming">未开始</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>10月20日 19:00</td>
+                            <td>LPL 夏季赛常规赛</td>
+                            <td>皇族战队 vs 对手战队</td>
+                            <td><span class="match-status status-finished">已结束</span></td>
+                            <td><a href="#" style="color: var(--primary-color);">回放</a></td>
+                        </tr>
+                        <tr>
+                            <td>10月15日 17:00</td>
+                            <td>LPL 夏季赛常规赛</td>
+                            <td>皇族战队 vs 对手战队</td>
+                            <td><span class="match-status status-finished">已结束</span></td>
+                            <td><a href="#" style="color: var(--primary-color);">回放</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Support/FAQ Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">粉丝支持</h2>
+                </div>
+                <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 20px; font-size: 20px;">如何成为皇族战队官方粉丝？</h3>
+                    <p style="margin-bottom: 15px;">关注我们的官方社交媒体账号（微博、微信公众号、B站、抖音）即可获取最新的战队资讯、选手直播以及独家周边福利。同时，您也可以通过官方商城购买正版战队周边。</p>
+                    <h3 style="margin-bottom: 20px; font-size: 20px;">观赛注意事项</h3>
+                    <p>观看直播时，请支持正版平台。严禁使用任何第三方非官方软件观看比赛，以确保您的账号安全并支持电竞产业的健康发展。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>皇族战队</h3>
+                    <p>皇族电子竞技俱乐部成立于2013年，是中国顶尖的电子竞技俱乐部之一，致力于培养优秀选手并提供优质的电竞内容。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">商务合作</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>赛事支持</h4>
+                    <ul>
+                        <li><a href="#">LPL 官网</a></li>
+                        <li><a href="#">英雄联盟官网</a></li>
+                        <li><a href="#">赛事中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">官方微博</a></li>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">官方B站</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 皇族电子竞技俱乐部. All Rights Reserved. 本网站为电竞战队展示页面设计。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的移动端菜单切换逻辑
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        });
+
+        // 导航链接点击后自动收起菜单（移动端体验优化）
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth <= 768) {
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+          </html>
