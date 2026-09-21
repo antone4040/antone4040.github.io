@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="qqt - 专业的即时通讯与跨平台协作解决方案。提供实时聊天、文件传输、群组管理及企业级安全加密服务，助力高效沟通与团队协作。">
+    <meta name="keywords" content="qqt,即时通讯,跨平台聊天,团队协作,在线客服,安全通讯">
+    <title>qqt - 专业即时通讯与跨平台协作解决方案</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --secondary-color: #64748b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 导航栏 */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: #dbeafe;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        /* 核心功能网格 */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-5px);
+            border-color: #bfdbfe;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #f1f5f9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 24px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* 演示界面展示 */
+        .demo-section {
+            background-color: #1e293b;
+            color: white;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .demo-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .demo-text {
+            flex: 1;
+        }
+
+        .demo-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .demo-text p {
+            color: #94a3b8;
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 450px;
+        }
+
+        .demo-visual {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .chat-bubble {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 15px;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .chat-bubble.left::before {
+            content: "对方";
+            position: absolute;
+            top: -20px;
+            left: 0;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .chat-bubble.right {
+            background-color: var(--primary-color);
+            margin-left: 20%;
+        }
+
+        .chat-bubble.right::before {
+            content: "我";
+            position: absolute;
+            top: -20px;
+            right: 0;
+            font-size: 12px;
+            color: #bfdbfe;
+        }
+
+        /* 解决方案列表 */
+        .solutions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .solution-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            transition: all 0.2s;
+        }
+
+        .solution-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .solution-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #e0e7ff;
+            color: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .solution-content h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .solution-content p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: white;
+            border-top: 1px solid var(--border-color);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-top: 15px;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* 简化处理，移动端隐藏菜单 */
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .demo-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .chat-bubble {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>qqt</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#features">核心功能</a>
+                <a href="#solutions">解决方案</a>
+                <a href="#developers">开发者</a>
+                <a href="#security">安全隐私</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-outline">登录</a>
+                <a href="#" class="btn btn-primary">免费注册</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首屏 Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>连接世界，沟通无界</h1>
+            <p>qqt 提供稳定、安全、跨平台的即时通讯服务。无论是个人社交还是企业协作，都能满足您的需求。</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="#" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">开始使用 qqt</a>
+                <a href="#" class="btn btn-outline" style="padding: 12px 30px; font-size: 16px;">观看演示</a>
+            </div>
+            
+            <div class="hero-features">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <span class="feature-text">极速传输</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <span class="feature-text">端到端加密</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌐</div>
+                    <span class="feature-text">多端同步</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <span class="feature-text">高性能架构</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">强大功能，提升效率</h2>
+                <p class="section-desc">基于先进的技术架构，为您提供全方位的通讯体验</p>
+            </div>
+            <div class="grid-3">
+                <article class="card">
+                    <div class="card-icon">💬</div>
+                    <h3>实时语音与视频</h3>
+                    <p>支持高清视频通话、多人会议及屏幕共享功能，画质流畅，延迟极低，适合商务洽谈与远程协作。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">📁</div>
+                    <h3>超大文件传输</h3>
+                    <p>突破传统限制，支持超大文件秒传与断点续传，文件管理云端化，随时随地访问重要资料。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>群组协作空间</h3>
+                    <p>创建专属工作群组，支持@提醒、文件共享、日程同步及任务分配，打造高效的团队协作环境。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>智能机器人</h3>
+                    <p>内置丰富的自动化机器人接口，可接入第三方服务，实现自动回复、数据监控与流程自动化。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🔔</div>
+                    <h3>消息通知管理</h3>
+                    <p>精细化的消息分类与免打扰设置，支持多设备同时在线接收推送，确保重要信息不遗漏。</p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>个性化主题</h3>
+                    <p>提供丰富的界面主题与表情包，支持自定义消息气泡样式，让沟通更加生动有趣。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解决方案 -->
+    <section id="solutions" class="section" style="background-color: #f1f5f9;">
+        <div class="container">
+            <div class="demo-content">
+                <div class="demo-text">
+                    <h2>满足不同场景的通讯需求</h2>
+                    <p>无论是个体用户还是大型组织，qqt 都能提供定制化的通讯解决方案，助力业务增长。</p>
+                    <ul class="solutions-list">
+                        <li class="solution-item">
+                            <div class="solution-icon">🏢</div>
+                            <div class="solution-content">
+                                <h4>企业级通讯</h4>
+                                <p>私有化部署与API接口，满足金融、医疗等对安全与合规性要求极高的行业需求。</p>
+                            </div>
+                        </li>
+                        <li class="solution-item">
+                            <div class="solution-icon">🎓</div>
+                            <div class="solution-content">
+                                <h4>在线教育与培训</h4>
+                                <p>支持万人级大群与直播授课，实时互动，提升教学效率与学员参与度。</p>
+                            </div>
+                        </li>
+                        <li class="solution-item">
+                            <div class="solution-icon">🛒</div>
+                            <div class="solution-content">
+                                <h4>电商客服系统</h4>
+                                <p>集成智能客服机器人与快捷回复话术，快速响应客户咨询，提升转化率。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="demo-visual">
+                    <div style="margin-bottom: 20px; display:flex; align-items:center; gap:10px;">
+                        <div style="width:10px; height:10px; background:#ef4444; border-radius:50%;"></div>
+                        <div style="width:10px; height:10px; background:#f59e0b; border-radius:50%;"></div>
+                        <div style="width:10px; height:10px; background:#10b981; border-radius:50%;"></div>
+                    </div>
+                    <div class="chat-bubble left">你好，请问关于 qqt 的企业版有什么优惠政策？</div>
+                    <div class="chat-bubble right">您好！企业版目前有季度订阅折扣，详情请查看官网介绍。</div>
+                    <div class="chat-bubble left">好的，麻烦发我一份产品手册。</div>
+                    <div class="chat-bubble right">已发送至您的邮箱，请查收。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>qqt</span>
+                    </a>
+                    <p>致力于为全球用户提供最安全、最便捷的即时通讯服务。连接你我，沟通无限。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">个人版</a></li>
+                        <li><a href="#">企业版</a></li>
+                        <li><a href="#">开放平台</a></li>
+                        <li><a href="#">下载中心</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>资源</h4>
+                    <ul>
+                        <li><a href="#">帮助文档</a></li>
+                        <li><a href="#">开发者社区</a></li>
+                        <li><a href="#">API 参考</a></li>
+                        <li><a href="#">状态监控</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于</h4>
+                    <ul>
+                        <li><a href="#">公司介绍</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 qqt Inc. All rights reserved. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
